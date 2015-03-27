@@ -19,20 +19,22 @@ if( !class_exists( 'CEDCDF_Field_Html' )){
       
       $this->normalize( $settings );
     }
-  }
+    
+    function set_attributes( $defaults, $settings ){
+      $settings = (array) $settings;
+      foreach( $defaults as $key => $default ) {
+        $this->attributes[$key] = array_key_exists($key, $settings) ? $settings[$key] : $default;
+      }
+    }
   
-  function set_attributes( $defaults, $settings ){
-    $settings = (array) $settings;
-    foreach( $defaults as $key => $default ) {
-      $this->attributes[$key] = array_key_exists($key, $settings) ? $settings[$key] : $default;
+    function normalize( $settings ){
+      $this->set_attributes( array(), $settings ); 
+    }
+    
+    function set_classes( $settings ){
+      
     }
   }
   
-  function normalize( $settings ){
-    $this->set_attributes( array(), $settings ); 
-  }
-  
-  function set_classes( $settings ){
-    
-  }
+ 
 }
